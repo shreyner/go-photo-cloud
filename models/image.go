@@ -25,7 +25,7 @@ func UploadImage(fileImg multipart.File, fileHandler *multipart.FileHeader) (str
 	defer f.Close()
 
 	if err != nil{
-		return "", nil
+		return "", false
 	}
 
 	fmt.Println("Create img: " + fullnameFile)
