@@ -5,8 +5,8 @@ import (
 	"os"
 	"fmt"
 	"io"
-	"httpmacaron/utils"
 	"net/http"
+	"github.com/shreyner/photo-cloud/utils"
 )
 
 func UploadImage(fileImg multipart.File, fileHandler *multipart.FileHeader) (string, bool) {

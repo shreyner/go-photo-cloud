@@ -1,8 +1,8 @@
 package main
 
 import (
-	"httpmacaron/routers"
-	"httpmacaron/routers/upload"
+	"github.com/shreyner/photo-cloud/routers"
+	"github.com/shreyner/photo-cloud/routers/upload"
 
 	"gopkg.in/macaron.v1"
 )
@@ -19,7 +19,6 @@ func main() {
 	m.Use(macaron.Renderer())
 
 	m.Get("/", routers.GetHome)
-	m.Get("/u", upload.GetUpload)
 	m.Post("/u", upload.PostUpload)
 
 	m.Run()

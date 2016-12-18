@@ -2,7 +2,7 @@ package upload
 
 import (
 	"gopkg.in/macaron.v1"
-	"httpmacaron/models"
+	"github.com/shreyner/photo-cloud/models"
 )
 
 func GetUpload(ctx *macaron.Context) {
