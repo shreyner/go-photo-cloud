@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/shreyner/photo-cloud/routers"
-	"github.com/shreyner/photo-cloud/routers/upload"
+	"photo-cloud/routers"
+	"photo-cloud/routers/upload"
 
 	"gopkg.in/macaron.v1"
 )

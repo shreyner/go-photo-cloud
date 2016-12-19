@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"github.com/shreyner/photo-cloud/utils"
+	"photo-cloud/utils"
 )
 
 func UploadImage(fileImg multipart.File, fileHandler *multipart.FileHeader) (string, bool) {
