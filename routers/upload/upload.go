@@ -7,21 +7,26 @@ import (
 )
 
 func GetUpload(ctx *macaron.Context) {
-	ctx.Redirect("/")
+	ctx.Error(403)
 }
 
 func PostUpload(ctx *macaron.Context, db *gorm.DB) {
-	fileimg, fileHandler, error := ctx.Req.FormFile("img")
+
+
+	fileimg, _, error := ctx.Req.FormFile("img")
 	defer fileimg.Close();
 
 	if error != nil {
 		ctx.Error(403, "Error upload file")
 	} else {
 
-		if link, err := models.UploadImage(fileimg, fileHandler, db); err == false{
-			ctx.Error(500, "Error server")
+
+		img, err := models.SaveImage(fileimg, db)
+
+		if !err {
+			ctx.Redirect("/" + img.GetFullName())
 		} else {
-			ctx.Redirect("/" + link)
+			ctx.Error(500, "Error server")
 		}
 
 	}

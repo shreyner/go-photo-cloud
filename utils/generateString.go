@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
+var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
 
 func RandomString(n int) string {
 	rand.Seed(time.Now().UTC().UnixNano())

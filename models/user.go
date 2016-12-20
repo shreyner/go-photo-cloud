@@ -1,13 +1,9 @@
 package models
 
+import "github.com/jinzhu/gorm"
+
 type User struct {
-	login, password string
-}
-
-func (u User) GetLogin() string {
-	return u.login
-}
-
-func (u *User) SetLogin(newLogin string) {
-	u.login = newLogin
+	gorm.Model
+	Login	string `gorm:"unique"`
+	Password string
 }

@@ -1,18 +1,17 @@
 package utils
 
-func GetTypeImage(str string) string {
+func GetTypeImage(str string) (string, bool) {
 
 	switch str {
-
 	case "image/bmp":
-		return "bmp"
+		return "bmp", false
 	case "image/gif":
-		return "gif"
+		return "gif", false
 	case "image/jpeg":
-		return "jpg"
+		return "jpg", false
 	case "image/png":
-		return "png"
+		return "png", false
 	default:
-		return ""
+		return "", true
 	}
 }

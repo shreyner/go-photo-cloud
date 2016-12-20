@@ -28,6 +28,7 @@ func main() {
 	m.Map(db)
 
 	m.Get("/", routers.GetHome)
+	m.Get("/u", routers.GetHome)
 	m.Post("/u", upload.PostUpload)
 
 	m.Run()

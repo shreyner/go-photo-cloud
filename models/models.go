@@ -4,7 +4,6 @@ import(
 	"github.com/jinzhu/gorm"
 	_ "github.com/go-sql-driver/mysql"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-
 	"log"
 	"os"
 )
@@ -31,9 +30,10 @@ func (dbc DBconfig) Connect() *gorm.DB {
 }
 
 func migration(db *gorm.DB) {
-	db.AutoMigrate(&Images{})
+	db.AutoMigrate(&Image{})
+	db.AutoMigrate(&User{})
 
-	if !db.HasTable(&Images{}) {
-		panic("Not Create table Images")
+	if !db.HasTable(&Image{}) || !db.HasTable(&User{}) {
+		panic("Error auto Migrate!")
 	}
 }

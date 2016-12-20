@@ -3,49 +3,66 @@ package models
 import (
 	"github.com/jinzhu/gorm"
 	"mime/multipart"
-	"os"
-	"io"
 	"net/http"
 	"photo-cloud/utils"
+	"fmt"
+	"os"
+	"io"
 )
 
-type Images struct {
+type Image struct {
 	gorm.Model
 	Name		string	`gorm:"unique_index"`
 	TypeImg		string
 }
 
-func UploadImage(fileImg multipart.File, fileHandler *multipart.FileHeader, db *gorm.DB) (string, bool) {
-	defer fileImg.Close()
+func (img *Image) GetFullName() string {
+	return img.Name + "." + img.TypeImg
+}
 
+func (img *Image) generateNameImg(db *gorm.DB) {
+	//Add len Name to config
+	img.Name = utils.RandomString(15)
+
+	for db.First(img).RowsAffected != 0 {
+		img.Name = utils.RandomString(15)
+		return
+	}
+
+
+};
+
+func (img *Image) getTypeImg(fileimg multipart.File) {
 	// Get type image
 	fileHeader := make([]byte, 512)
-	fileImg.Read(fileHeader)
-	fileImg.Seek(0,0)
+	fileimg.Read(fileHeader)
+	fileimg.Seek(0,0)
 
-	// Generate name
-	fileName := utils.RandomString(25)
-	fileType := utils.GetTypeImage(http.DetectContentType(fileHeader))
-	imgD := Images{
-		Name: fileName,
-		//Name: "bbb",
-		TypeImg: fileType,
+	img.TypeImg, _ = utils.GetTypeImage(http.DetectContentType(fileHeader))
+}
+
+func SaveImage(fileImg multipart.File, db *gorm.DB) (Image, bool) {
+	defer fileImg.Close()
+	img := Image{}
+	img.generateNameImg(db)
+	img.getTypeImg(fileImg)
+
+	if len(img.TypeImg) == 0 {
+		return img, true
+		fmt.Println("No type")
 	}
 
-	fullnameFile := imgD.Name + "." + imgD.TypeImg
-
-
-	f, err := os.OpenFile("./data/img/" + fullnameFile , os.O_WRONLY | os.O_CREATE, 0666)
+	f, err := os.OpenFile("./data/img/" + img.GetFullName() , os.O_WRONLY | os.O_CREATE, 0666)
 	defer f.Close()
 
-	if err != nil{
-		panic("Don't Save!")
-		return "", false
+	if err != nil {
+		panic("No create file!")
 	}
 
-	db.Create(&imgD)
-
 	io.Copy(f, fileImg)
+	db.NewRecord(&img)
+	db.Create(&img)
 
-	return fullnameFile, true;
+	return img, false
+
 }
