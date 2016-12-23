@@ -4,22 +4,26 @@ import (
 	"photo-cloud/routers"
 	"photo-cloud/routers/upload"
 	"photo-cloud/models"
+	"photo-cloud/module/config"
 
 	"gopkg.in/macaron.v1"
 )
 
 func main() {
-	//For example
-	//user := new(models.User)
-	//user.SetLogin("Alexander")
-	//fmt.Println(user.GetLogin())
 
+	// Settings Config
+	conf := config.Get()
+
+	// Settings DataBase
 	dbConfig := models.DBconfig{
-		ConnectString: "goimg:123@/goimg",
+		ConnectString: conf.DbSettings.User +
+			":" + conf.DbSettings.Password + "@/" +
+			conf.DbSettings.DbName,
 	}
 
 	db := dbConfig.Connect()
 	defer db.Close();
+	// end
 
 	m := macaron.Classic()
 
@@ -28,7 +32,7 @@ func main() {
 	m.Map(db)
 
 	m.Get("/", routers.GetHome)
-	m.Get("/u", routers.GetHome)
+	m.Get("/u", upload.GetUpload)
 	m.Post("/u", upload.PostUpload)
 
 	m.Run()
