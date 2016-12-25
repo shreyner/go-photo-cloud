@@ -37,7 +37,11 @@ func main() {
 	//	user.Profile = profile
 	//	db.Create(&user)
 	//
-
+	//	token := models.Token{}
+	//	token.Token = "token1"
+	//	token.User = user
+	//	db.Create(&token)
+	//
 
 	m := macaron.Classic()
 

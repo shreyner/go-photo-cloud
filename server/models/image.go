@@ -14,7 +14,7 @@ type Image struct {
 	gorm.Model
 	Name		string	`gorm:"unique_index"`
 	TypeImg		string
-	Private		bool	`gorm:"default:'true'"`
+	Private		bool	`gorm:"default:'1'"`
 	User		User
 	UserID		uint
 }

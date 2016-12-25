@@ -31,13 +31,15 @@ func (dbc DBconfig) Connect() *gorm.DB {
 
 func migration(db *gorm.DB) {
 	db.AutoMigrate(&User{})
-	db.AutoMigrate(&Image{})
 	db.AutoMigrate(&Profile{})
+	db.AutoMigrate(&Image{})
+	db.AutoMigrate(&Token{})
 
-	db.Model(&User{}).Related(&Image{})
+	db.Model(&Image{}).Related(&User{})
 	db.Model(&User{}).Related(&Profile{})
+	db.Model(&Token{}).Related(&User{})
 
-	if !db.HasTable(&Image{}) || !db.HasTable(&User{}) {
+	if !db.HasTable(&Image{}) || !db.HasTable(&User{}) || !db.HasTable(&Profile{}) || !db.HasTable(&Token{}) {
 		panic("Error auto Migrate!")
 	}
 }
