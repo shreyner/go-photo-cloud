@@ -1,0 +1,23 @@
+{
+  "name": "photo-cloud",
+  "version": "0.0.0",
+  "description": "Сервис для хранения картинок",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shreyner/photo-cloud.git"
+  },
+  "author": "Alexander Shreyner <alexander@shreyner.ru>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shreyner/photo-cloud/issues"
+  },
+  "homepage": "https://github.com/shreyner/photo-cloud#readme",
+  "devDependencies": {
+    "tslint": "^4.2.0",
+    "typescript": "^2.1.4"
+  }
+}
