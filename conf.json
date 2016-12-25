@@ -1,0 +1,8 @@
+{
+    "NameApp": "Photo-cloud",
+    "DbSettings": {
+        "User": "goimg",
+        "Password": "123",
+        "DbName": "goimg"
+      }
+}
