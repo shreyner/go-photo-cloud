@@ -14,6 +14,9 @@ type Image struct {
 	gorm.Model
 	Name		string	`gorm:"unique_index"`
 	TypeImg		string
+	Private		bool	`gorm:"default:'true'"`
+	User		User
+	UserID		uint
 }
 
 func (img *Image) GetFullName() string {
@@ -22,14 +25,13 @@ func (img *Image) GetFullName() string {
 
 func (img *Image) generateNameImg(db *gorm.DB) {
 	//Add len Name to config
-	img.Name = utils.RandomString(15)
+	var name string
 
-	for db.First(img).RowsAffected != 0 {
-		img.Name = utils.RandomString(15)
-		return
+	for count := 1; count != 0; db.Model(&Image{}).Where("name = ?", name).Count(&count) {
+		name = utils.RandomString(15)
 	}
 
-
+	img.Name = name
 };
 
 func (img *Image) getTypeImg(fileimg multipart.File) {

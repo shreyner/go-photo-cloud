@@ -7,7 +7,7 @@ import (
 )
 
 func GetUpload(ctx *macaron.Context) {
-	ctx.Error(403)
+	ctx.Error(400)
 }
 
 func PostUpload(ctx *macaron.Context, db *gorm.DB) {
@@ -17,10 +17,8 @@ func PostUpload(ctx *macaron.Context, db *gorm.DB) {
 	defer fileimg.Close();
 
 	if error != nil {
-		ctx.Error(403, "Error upload file")
+		ctx.Error(403)
 	} else {
-
-
 		img, err := models.SaveImage(fileimg, db)
 
 		if !err {

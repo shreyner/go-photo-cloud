@@ -25,6 +25,20 @@ func main() {
 	defer db.Close();
 	// end
 
+	//Db Test
+	//	profile := models.Profile{}
+	//	profile.Name = "Alexander"
+	//	db.Create(&profile)
+	//
+	//	user := models.User{}
+	//	user.Login = "AlexanderLogin4"
+	//	user.Password = "123"
+	//	user.Email = "alexander@shreyner.ru5"
+	//	user.Profile = profile
+	//	db.Create(&user)
+	//
+
+
 	m := macaron.Classic()
 
 	m.Use(macaron.Static("data/img"))

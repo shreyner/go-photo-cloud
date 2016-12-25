@@ -13,7 +13,7 @@ type DBconfig struct {
 }
 
 func (dbc DBconfig) Connect() *gorm.DB {
-	db, err := gorm.Open("mysql", dbc.ConnectString)
+	db, err := gorm.Open("mysql", dbc.ConnectString + "?parseTime=true")
 
 	db.SetLogger(log.New(os.Stdout, "\r\n", 0))
 
@@ -30,8 +30,12 @@ func (dbc DBconfig) Connect() *gorm.DB {
 }
 
 func migration(db *gorm.DB) {
-	db.AutoMigrate(&Image{})
 	db.AutoMigrate(&User{})
+	db.AutoMigrate(&Image{})
+	db.AutoMigrate(&Profile{})
+
+	db.Model(&User{}).Related(&Image{})
+	db.Model(&User{}).Related(&Profile{})
 
 	if !db.HasTable(&Image{}) || !db.HasTable(&User{}) {
 		panic("Error auto Migrate!")
