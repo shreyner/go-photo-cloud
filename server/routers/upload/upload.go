@@ -2,7 +2,7 @@ package upload
 
 import (
 	"gopkg.in/macaron.v1"
-	"photo-cloud/models"
+	"photo-cloud/server/models"
 	"github.com/jinzhu/gorm"
 )
 

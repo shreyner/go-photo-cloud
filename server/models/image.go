@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"mime/multipart"
 	"net/http"
-	"photo-cloud/utils"
+	"photo-cloud/server/utils"
 	"fmt"
 	"os"
 	"io"

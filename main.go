@@ -1,10 +1,10 @@
 package main
 
 import (
-	"photo-cloud/routers"
-	"photo-cloud/routers/upload"
-	"photo-cloud/models"
-	"photo-cloud/module/config"
+	"photo-cloud/server/routers"
+	"photo-cloud/server/routers/upload"
+	"photo-cloud/server/models"
+	"photo-cloud/server/module/config"
 
 	"gopkg.in/macaron.v1"
 )
@@ -42,7 +42,9 @@ func main() {
 	m := macaron.Classic()
 
 	m.Use(macaron.Static("data/img"))
-	m.Use(macaron.Renderer())
+	m.Use(macaron.Renderer(macaron.RenderOptions{
+		Directory: "server/templates",
+	}))
 	m.Map(db)
 
 	m.Get("/", routers.GetHome)
