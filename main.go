@@ -1,10 +1,10 @@
 package main
 
 import (
-	"photo-cloud/server/routers"
-	"photo-cloud/server/routers/upload"
-	"photo-cloud/server/models"
-	"photo-cloud/server/module/config"
+	"go-photo-cloud/server/routers"
+	"go-photo-cloud/server/routers/upload"
+	"go-photo-cloud/server/models"
+	"go-photo-cloud/server/module/config"
 
 	"gopkg.in/macaron.v1"
 )

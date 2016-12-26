@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shreyner/photo-cloud.git"
+    "url": "git+https://github.com/shreyner/go-photo-cloud.git"
   },
   "author": "Alexander Shreyner <alexander@shreyner.ru>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/shreyner/photo-cloud/issues"
+    "url": "https://github.com/shreyner/go-photo-cloud/issues"
   },
-  "homepage": "https://github.com/shreyner/photo-cloud#readme",
+  "homepage": "https://github.com/shreyner/go-photo-cloud#readme",
   "devDependencies": {
     "tslint": "^4.2.0",
     "typescript": "^2.1.4"
