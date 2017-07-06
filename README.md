@@ -1,6 +1,6 @@
 # Photo cloud
 
-Сервис для хранения картинок
+Service for picture store
 
 ## Installation
 1. Install [Go](https://golang.org/)
